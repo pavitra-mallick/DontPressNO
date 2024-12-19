@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Request</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fdf5e6;
+        }
+        .question-box {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            position: absolute;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .no {
+            background-color: #cccccc;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="question-container">
+        <div class="question-box">
+            <p>Will you go on a date with me?</p>
+            <button class="yes">Yes</button>
+            <button class="no">No</button>
+        </div>
+    </div>
+
+    <script>
+        const questionContainer = document.getElementById('question-container');
+
+        function addQuestion() {
+            const questionBox = document.createElement('div');
+            questionBox.className = 'question-box';
+            questionBox.innerHTML = `
+                <p>A hot photograph of yours..😶‍🌫️?</p>
+                <button class="yes">Yes</button>
+                <button class="no">No</button>
+            `;
+
+            const noButton = questionBox.querySelector('.no');
+            const yesButton = questionBox.querySelector('.yes');
+
+            noButton.addEventListener('mouseover', () => {
+                const x = Math.random() * (window.innerWidth - questionBox.offsetWidth);
+                const y = Math.random() * (window.innerHeight - questionBox.offsetHeight);
+                questionBox.style.left = `${x}px`;
+                questionBox.style.top = `${y}px`;
+            });
+
+            yesButton.addEventListener('click', () => {
+                questionBox.innerHTML = "<p>You are such a hottie! I love you so much baby ❤️💋</p>";
+                //addQuestion();
+            });
+
+            questionContainer.appendChild(questionBox);
+        }
+
+        const initialNoButton = document.querySelector('.no');
+        const initialYesButton = document.querySelector('.yes');
+
+        initialNoButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - initialNoButton.parentElement.offsetWidth);
+            const y = Math.random() * (window.innerHeight - initialNoButton.parentElement.offsetHeight);
+            initialNoButton.parentElement.style.left = `${x}px`;
+            initialNoButton.parentElement.style.top = `${y}px`;
+        });
+
+        initialYesButton.addEventListener('click', () => {
+            initialYesButton.parentElement.innerHTML = "<p>awww, I love you so muchhh!!</p>";
+            addQuestion();
+        });
+    </script>
+</body>
+</html>
